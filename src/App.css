@@ -1,38 +1,134 @@
-.App {
-  text-align: center;
+/* .reddit-sans-<uniquifier> {
+  font-family: "Reddit Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+  
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.didact-gothic-regular {
+  font-family: "Didact Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+} */
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+a.navbar-brand {
+  font-family: "Didact Gothic", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: x-large;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+a.navbar-brand:hover {
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+img.child-img.img-fluid {
+  object-fit: cover;
+  height: 100vh;
+  width: 100vw;
+  filter: brightness(0.5);
+}
+
+.parent-img {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+}
+
+.navbar {
+  position: absolute;
+}
+
+.container-fluid {
+  position: absolute;
+  bottom: 0;
+}
+
+.col-md-8 {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+}
+
+.col-md-4 {
+  height: 100vh;
+  backdrop-filter: blur(17px);
+}
+
+@media (max-width: 720px) {
+  .col-md-4 {
+    height: 50vh;
+    backdrop-filter: blur(17px);
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.parent-sidebar {
+  width: 100%;
+  margin: 30px 0px;
+  padding: 0px 15px;
+}
+
+.d-flex {
+  display: flex !important;
+}
+
+input.form-control.me-2 {
+  border: none;
+  outline: none;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid #adadad;
+  caret-color: #e5e5e5;
+  color: #e5e5e5;
+  font-weight: 400;
+}
+
+input.form-control.me-2::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+}
+
+input.form-control.me-2:focus {
+  box-shadow: none;
+}
+
+input.form-control.me-2::placeholder {
+  color: #e7e7e7;
+  font-family: "Reddit Sans", sans-serif;
+  font-weight: 200;
+}
+
+h1.parent-rightSide-text {
+  color: white;
+  margin-bottom: 14px;
+}
+
+.parent-details {
+  margin: 46px 14px;
+}
+
+.weather-details {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.weather-details p {
+  margin: 0;
+  color: #d1d1d1;
+  font-size: smaller;
+}
+
+.weather-details p:first-child {
+  width: 150px; /* Adjust as needed */
+  color: #d1d1d1;
+  font-size: smaller;
 }
