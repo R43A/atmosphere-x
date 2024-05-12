@@ -65,6 +65,10 @@ img.child-img.img-fluid {
 }
 
 @media (max-width: 720px) {
+  .col-md-8 {
+    height: 100%;
+  }
+
   .col-md-4 {
     height: 100%;
     backdrop-filter: blur(17px);
