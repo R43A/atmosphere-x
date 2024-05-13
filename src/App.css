@@ -109,6 +109,15 @@ input.form-control.me-2::placeholder {
 h1.parent-rightSide-text {
   color: white;
   margin-bottom: 14px;
+  font-size: 40px;
+}
+
+@media (max-width: 720px) {
+  h1.parent-rightSide-text {
+    color: white;
+    margin-bottom: 14px;
+    font-size: 35px;
+  }
 }
 
 .parent-details {
