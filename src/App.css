@@ -140,3 +140,9 @@ h1.parent-rightSide-text {
   color: #d1d1d1;
   font-size: smaller;
 }
+
+.root {
+  height: 100vh;
+  width: 100vw;
+  object-fit: cover;
+}

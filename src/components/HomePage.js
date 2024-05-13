@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import backgroundImage from "../images/weather-bg.jpg";
+import clearSkyImage from "../images/sunny.jpg";
+import snowyImage from "../images/snowy.jpg";
+import coldImage from "../images/cold.jpg";
+import hotImage from "../images/hot.jpg";
+import moderateImage from "../images/moderate.jpg";
 
 function HomePage() {
   const [weather, setWeather] = useState(null);
@@ -79,6 +83,29 @@ function HomePage() {
     }
   };
 
+  const getBackgroundImage = () => {
+    if (!weather || !weather.current) return clearSkyImage;
+
+    const temperature = weather.current.temp_c;
+    if (temperature <= 0) return snowyImage;
+    if (temperature > 0 && temperature <= 15) return coldImage;
+    if (temperature > 15 && temperature <= 25) return moderateImage;
+    if (temperature > 25) return hotImage;
+    return clearSkyImage; // Default image
+  };
+
+  const getTemperature = () => {
+    return weather && weather.current
+      ? Math.round(weather.current.temp_c)
+      : null;
+  };
+
+  const getLocation = () => {
+    return weather && weather.location
+      ? `${weather.location.name}, ${weather.location.region}, ${weather.location.country}`
+      : "Unknown Location";
+  };
+
   return (
     <>
       <div className="root">
@@ -92,8 +119,8 @@ function HomePage() {
 
         <div className="parent-img">
           <img
-            src={backgroundImage}
-            alt="backgrounIimage"
+            src={getBackgroundImage()}
+            alt="backgroundImage"
             className="child-img img-fluid"
           />
         </div>
@@ -106,14 +133,7 @@ function HomePage() {
               ) : (
                 <>
                   <h1 className="display-4 parent-rightSide-text">
-                    {weather && weather.current ? (
-                      <>
-                        {weather.current.temp_c}°C, {weather.location.name},{" "}
-                        {weather.location.country}
-                      </>
-                    ) : (
-                      "Weather Data Not Available"
-                    )}
+                    {getTemperature()}°C, {getLocation()}
                   </h1>
                 </>
               )}
