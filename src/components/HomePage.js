@@ -146,8 +146,8 @@ function HomePage() {
                 )}
                 {weather && weather.current && (
                   <div className="weather-details">
-                    <p>Cloud:</p>
-                    <p>{weather.current.cloud}</p>
+                    <p>Cloudy:</p>
+                    <p>{weather.current.cloud}%</p>
                   </div>
                 )}
                 {weather && weather.current && (
