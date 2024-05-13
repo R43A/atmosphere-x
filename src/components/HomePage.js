@@ -5,9 +5,9 @@ import backgroundImage from "../images/weather-bg.jpg";
 function HomePage() {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    // Function to get user's current location and fetch weather data
     const getLocationAndWeather = () => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -27,7 +27,6 @@ function HomePage() {
       }
     };
 
-    // Function to fetch weather data using coordinates
     const fetchWeather = async (latitude, longitude) => {
       const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${latitude},${longitude}`;
       const options = {
@@ -51,12 +50,34 @@ function HomePage() {
       }
     };
 
-    // Call getLocationAndWeather when component mounts
     getLocationAndWeather();
 
-    // Cleanup function
     return () => {};
   }, []);
+
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    const url = `https://weatherapi-com.p.rapidapi.com/current.json?q=${searchQuery}`;
+    const options = {
+      method: "GET",
+      headers: {
+        "X-RapidAPI-Key": "f3da518257msh97e4dc94856b350p16a48bjsn6558123f12c7",
+        "X-RapidAPI-Host": "weatherapi-com.p.rapidapi.com",
+      },
+    };
+
+    try {
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log("Fetched weather data:", result);
+      setWeather(result);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching weather data:", error);
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -99,12 +120,14 @@ function HomePage() {
             </div>
             <div className="col-md-4">
               <div className="parent-sidebar">
-                <form className="d-flex" role="search">
+                <form className="d-flex" role="search" onSubmit={handleSearch}>
                   <input
                     className="form-control me-2"
                     type="search"
                     placeholder="Enter Location"
                     aria-label="Search"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
                   />
                 </form>
               </div>
